@@ -1,6 +1,19 @@
 # MyCarApp (Graduation project for the C# MVC Frameworks Course @ SoftUni July 2018)
 
-Project Assignment 
+# Short description
+
+This is an implementation of online car avertisements site.
+
+You can use it when selling your vehicles. 
+
+In the 'Search' section, you can find the following vehicles - cars.
+
+You do not need to look for a particular model, but can use other search criteria such as price, first registration date, colour, etc.
+After you have completed a search, you get to a list of search results that includes all the vehicles that match your search criteria. 
+
+By clicking on the ad, you will get to the Detail View. Here, you will receive the remaining information about the vehicle and the vendor, whom you can also contact at this point.
+
+# Project Assignment 
 
 I.	General Requirements
 
