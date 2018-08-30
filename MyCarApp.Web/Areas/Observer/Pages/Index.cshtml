@@ -1,0 +1,18 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "You Favorite Advertisements";
+}
+
+<h2>@ViewData["Title"]</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Info</th>
+        </tr>
+    </thead>
+    <tbody>
+        @Html.DisplayFor(m => m.allAdvertisements)
+    </tbody>
+</table>

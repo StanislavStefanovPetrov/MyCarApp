@@ -1,0 +1,25 @@
+﻿@model IEnumerable<VehicleMakeConciseViewModel>
+@{
+    ViewData["Title"] = "All Makes";
+}
+
+<h2>@ViewData["Title"] - Info</h2>
+
+<a asp-area="Admin" asp-controller="Home" asp-action="Index" class="btn btn-success"><i class="fa fa-list" aria-hidden="true"></i> Back to Main Menu (admin)</a>
+<a asp-area="Admin" asp-controller="Vehicles" asp-action="CreateMake" class="btn btn-success"><i class="fa fa-plus"></i> Create new make</a>
+
+<hr />
+
+<table class="table table-hover table-active">
+    <thead>
+        <tr>
+            <th scope="col">Make Name</th>
+            <th scope="col">Models Count</th>
+            <th scope="col">Models</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @Html.DisplayForModel()
+    </tbody>
+</table>

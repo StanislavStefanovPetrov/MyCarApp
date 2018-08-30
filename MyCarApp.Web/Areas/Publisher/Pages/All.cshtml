@@ -1,0 +1,23 @@
+﻿@page
+@model AllModel
+@{
+    ViewData["Title"] = "Your Advertisements";
+}
+
+<h2>@ViewData["Title"] History</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>PublishDate</th>
+            <th>Vehicle</th>
+            <th>Watchers</th>
+            <th>Is Expired?</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @Html.DisplayFor(m=>m.allAdvertisements)
+    </tbody>
+</table>

@@ -1,0 +1,32 @@
+﻿@model VehicleMakeDeletingBindingModel
+
+@{
+    var attributes = new Dictionary<string, object>();
+
+    attributes.Add("LabelFor", new { @class = "control-label col-sm-2" });
+
+    attributes.Add("EditorFor", new { @class = "form-control", @readonly = "read-only" });
+
+    attributes.Add("ValidationMessageFor", new { @class = "text-danger" });
+
+}
+@Html.FormEditGroupWithCustomAttibutesFor(m => m.Name, attributes)
+
+@if (Model.VehicleModels.Any())
+{
+    <div class="form-group">
+        <div class="col-sm-10">
+            <a class="link dropdown-toggle" href="#" id="modelsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Models
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="modelsDropdown">
+                @Html.DisplayFor(Model => Model.VehicleModels)
+            </div>
+           
+        </div>
+    </div>
+}
+
+
+

@@ -1,0 +1,34 @@
+﻿@model UserConciseViewModel
+
+<tr>
+    <td>@Model.FullName</td>
+    <td>@Model.Email</td>
+    <td>@Html.DisplayFor(model => model.IsPublisher)</td>
+    <td>@Html.DisplayFor(model => model.IsObserver)</td>
+    <td>@Html.DisplayFor(model => model.IsAdmin)</td>
+    <td>
+        <a asp-area="Admin" asp-controller="Users" asp-action="Details" asp-route-id="@Model.Id"
+           class="btn btn-default">Details</a>
+        @if (!Model.IsAdmin)
+        {
+            <a asp-area="Admin" asp-controller="Users" asp-action="ChangePassword" asp-route-id="@Model.Id"
+               class="btn btn-warning">
+                Change password
+            </a>
+            if (!Model.IsLockedOut)
+            {
+                <a asp-area="Admin" asp-controller="Users" asp-action="Ban" asp-route-id="@Model.Id"
+                   class="btn btn-danger">
+                    Ban
+                </a>
+            }
+            else
+            {
+                <a asp-area="Admin" asp-controller="Users" asp-action="UnBan" asp-route-id="@Model.Id"
+                   class="btn btn-success">
+                    UnBan
+                </a>
+            }
+        }
+    </td>
+</tr>

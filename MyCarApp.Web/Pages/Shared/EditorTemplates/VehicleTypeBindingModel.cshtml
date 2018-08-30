@@ -1,0 +1,6 @@
+﻿@model VehicleTypeBindingModel
+
+@Html.HiddenFor(x => x.Id)
+@Html.LabelFor(x => x.IsChecked, Model.Type)
+@Html.CheckBoxFor(x => x.IsChecked)
+@Html.HiddenFor(x => x.Type)

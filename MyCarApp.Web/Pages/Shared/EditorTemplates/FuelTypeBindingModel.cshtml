@@ -1,0 +1,6 @@
+﻿@model FuelTypeBindingModel
+
+@Html.HiddenFor(x => x.Id)
+@Html.LabelFor(x => x.IsChecked, Model.Fuel)
+@Html.CheckBoxFor(x => x.IsChecked)
+@Html.HiddenFor(x => x.Fuel)

@@ -1,0 +1,7 @@
+﻿@model VehicleConditionBindingModel
+
+@Html.HiddenFor(x => x.Id)
+@Html.LabelFor(x => x.IsChecked, Model.Condition)
+@Html.CheckBoxFor(x => x.IsChecked)
+@Html.HiddenFor(x => x.Condition)
+

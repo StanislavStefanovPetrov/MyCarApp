@@ -1,0 +1,6 @@
+@using Microsoft.AspNetCore.Identity
+
+@if (this.User.IsInRole(AppUtilities.PublisherRole))
+{
+    <a asp-area=@AppUtilities.PublisherArea class="dropdown-item" asp-page="/All">Published Advertisements</a>
+}

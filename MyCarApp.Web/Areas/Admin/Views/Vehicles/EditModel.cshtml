@@ -1,0 +1,23 @@
+﻿@model VehicleModelEdittingBindingModel
+@{
+    ViewData["Title"] = "Edit Model";
+}
+
+<h2> @ViewData["Title"]</h2>
+
+<form asp-area="Admin" asp-controller="Vehicles" asp-action="EditModel" method="post" class="form-horizontal">
+    <input type="hidden" asp-for="Id" />
+    @Html.EditorForModel()
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-push-2">
+            <input type="submit" value="Edit Model" class="btn btn-success" />
+            <a asp-area="Admin" asp-controller="Vehicles" asp-action="MakeDetails" asp-route-id="@Model.MakeId" class="btn btn-default">Cancel</a>
+        </div>
+    </div>
+</form>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

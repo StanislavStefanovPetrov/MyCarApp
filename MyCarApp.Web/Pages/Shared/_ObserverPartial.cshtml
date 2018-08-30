@@ -1,0 +1,6 @@
+@using Microsoft.AspNetCore.Identity
+
+@if (this.User.IsInRole(AppUtilities.ObserverRole))
+{
+<a class="dropdown-item" asp-area=@AppUtilities.ObserverArea asp-page="/Index">See Your Favorite Advertisements</a>
+}

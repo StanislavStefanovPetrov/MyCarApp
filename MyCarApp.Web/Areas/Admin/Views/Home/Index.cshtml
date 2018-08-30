@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@using MyCarApp.Common.Utilities
+
+<h2>Index</h2>
+
+<div class="col">
+    <a asp-area=@AppUtilities.AdministratorArea asp-controller="Vehicles" asp-action="Index" class="btn btn-primary"><i class="fa fa-list" aria-hidden="true"></i> Go To Vehicles Menu</a>
+
+    <a asp-area=@AppUtilities.AdministratorArea asp-controller="Users" asp-action="Index" class="btn btn-primary"><i class="fa fa-list" aria-hidden="true"></i> Go To Users Menu</a>
+</div>

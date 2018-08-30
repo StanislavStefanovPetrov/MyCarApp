@@ -1,0 +1,8 @@
+﻿@using MyCarApp.Common.Publisher.ViewModels
+
+@model ICollection<VehicleModelViewModel>
+
+@foreach (var vehicleModel in Model)
+{
+    <option value="@vehicleModel.Id">@vehicleModel.Name</option>
+}

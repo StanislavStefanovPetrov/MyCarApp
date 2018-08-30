@@ -1,0 +1,273 @@
+﻿@page
+@model MyCarApp.Web.Pages.SearchModel
+@using MyCarApp.Web.Helpers
+@using MyCarApp.Common.SearchEngine.ViewModels
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h2>@ViewData["Title"] Menu</h2>
+<a asp-page="Index" class="btn btn-success"><i class="fa fa-list" aria-hidden="true"></i> Back to Main</a>
+<a asp-page="Search" class="btn btn-success"><i class="fas fa-eraser"></i> Clear</a>
+
+@{
+    var attributes = new Dictionary<string, object>();
+
+    attributes.Add("LabelFor", new { @class = "control-label h6" });
+
+    attributes.Add("ValidationMessageFor", new { @class = "text-danger" });
+
+}
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <div class="row">
+            <h4 class="h4">Make, Model, Condition</h4>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-4">
+                @{
+                    attributes["DropDownList"] = new { @class = "form-control", @id = "VehicleBindingModel_MakeId" };
+                }
+                @Html.FormDropDownListGroupWithCustomAttibutesFor(m => m.VehicleBindingModel.MakeId, new SelectList(Model.Input.VehicleMakes, "Id", "Name", null), null, false, attributes)
+            </div>
+            <div class="col-4">
+                @{
+                    attributes["DropDownList"] = new { @class = "form-control", @id = "VehicleBindingModel_ModelId", @disabled = "disabled" };
+                }
+                @Html.FormDropDownListGroupWithCustomAttibutesFor(m => m.VehicleBindingModel.ModelId, new SelectList(new List<VehicleModelViewModel>(), "Id", "Name", null), "--Select an item---", true, attributes)
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <h4 class="h6">Condition</h4>
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(x => x.VehicleBindingModel.VehicleConditions)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <h4 class="h4">Color</h4>
+        </div>
+        <hr>
+        <div class="form-group">
+            @Html.EditorFor(x => x.VehicleBindingModel.Colors)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <h4 class="h4">Vehicle Type</h4>
+        </div>
+        <hr>
+        <div class="form-group">
+            @Html.EditorFor(x => x.VehicleBindingModel.VehicleTypes)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <h4 class="h4">Engine</h4>
+        </div>
+        <hr>
+        <div class="form-group">
+            <div class="row">
+                <h4 class="h6">Fuel Type</h4>
+            </div>
+            <div class="form-group">
+                @Html.EditorFor(x => x.VehicleBindingModel.FuelTypes)
+            </div>
+            <div class="row">
+                <h4 class="h6">Transmission</h4>
+            </div>
+            <div class="form-group">
+                @Html.EditorFor(x => x.VehicleBindingModel.Transmissions)
+            </div>
+            <div class="row">
+                <h4 class="h6">Engine Capacity</h4>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-6">
+                        <label asp-for="VehicleBindingModel.MinEngineCapacity" class="h6"></label>
+                        <input asp-for="VehicleBindingModel.MinEngineCapacity" class="form-control" />
+                        <span asp-validation-for="VehicleBindingModel.MinEngineCapacity" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <label asp-for="VehicleBindingModel.MaxEngineCapacity" class="h6"></label>
+                        <input asp-for="VehicleBindingModel.MaxEngineCapacity" class="form-control" />
+                        <span asp-validation-for="VehicleBindingModel.MaxEngineCapacity" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <h4 class="h4">Vehicle Details</h4>
+        </div>
+        <hr />
+        <div class="form-group">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <div class="row">
+                            @Html.LabelFor(model => model.VehicleBindingModel.FirstRegistrationAfter, new { @class = "h4" })
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col">
+                                @Html.EditorFor(model => model.VehicleBindingModel.FirstRegistrationAfter)
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar">
+                                    </span>
+                                </span>
+                            </div>
+                            <span class="table-danger">
+                                @Html.ValidationMessageFor(model => model.VehicleBindingModel.FirstRegistrationAfter)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <div class="row">
+                            @Html.LabelFor(model => model.VehicleBindingModel.FirstRegistrationBefore, new { @class = "h4" })
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col">
+                                @Html.EditorFor(model => model.VehicleBindingModel.FirstRegistrationBefore)
+                                <span class="input-group-addon">
+                                    <span class="fa fa-calendar">
+                                    </span>
+                                </span>
+                            </div>
+                            <span class="table-danger">
+                                @Html.ValidationMessageFor(model => model.VehicleBindingModel.FirstRegistrationBefore)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-group">
+                        <div class="row">
+                            @Html.LabelFor(model => model.VehicleBindingModel.MinKilometre, new { @class = "h4" })
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col">
+                                @Html.EditorFor(model => model.VehicleBindingModel.MinKilometre)
+                            </div>
+                            <span class="text-danger">
+                                @Html.ValidationMessageFor(model => model.VehicleBindingModel.MinKilometre)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            @Html.LabelFor(model => model.VehicleBindingModel.MaxKilometre, new { @class = "h4" })
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col">
+                                @Html.EditorFor(model => model.VehicleBindingModel.MaxKilometre)
+                            </div>
+                            <span class="text-danger">
+                                @Html.ValidationMessageFor(model => model.VehicleBindingModel.MaxKilometre)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <div class="row">
+                            @Html.LabelFor(model => model.VehicleBindingModel.MinPrice, new { @class = "h4" })
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col">
+                                @Html.EditorFor(model => model.VehicleBindingModel.MinPrice)
+                            </div>
+                            <span class="text-danger">
+                                @Html.ValidationMessageFor(model => model.VehicleBindingModel.MinPrice)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            @Html.LabelFor(model => model.VehicleBindingModel.MaxPrice, new { @class = "h4" })
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col">
+                                @Html.EditorFor(model => model.VehicleBindingModel.MaxPrice)
+                            </div>
+                            <span class="text-danger">
+                                @Html.ValidationMessageFor(model => model.VehicleBindingModel.MaxPrice)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <div class="row">
+                            @Html.LabelFor(model => model.VehicleBindingModel.MinPower, new { @class = "h4" })
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col">
+                                @Html.EditorFor(model => model.VehicleBindingModel.MinPower)
+                            </div>
+                            <span class="text-danger">
+                                @Html.ValidationMessageFor(model => model.VehicleBindingModel.MinPower)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            @Html.LabelFor(model => model.VehicleBindingModel.MaxPower, new { @class = "h4" })
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col">
+                                @Html.EditorFor(model => model.VehicleBindingModel.MaxPower)
+                            </div>
+                            <span class="text-danger">
+                                @Html.ValidationMessageFor(model => model.VehicleBindingModel.MaxPower)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+        <input id="BtnAdd" name="myButton" type="submit" value="Search" />
+    </p>
+}
+
+
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery antifogeryService
+
+@section Scripts {
+    <script src="~/js/inport-data-to-drop-down-list.js"></script>
+    <script>
+        $('#VehicleBindingModel_MakeId').change(function () {
+            inportDataToDropDownList("VehicleBindingModel_MakeId", "VehicleBindingModel_ModelId","https://localhost:44300/SearchModels", "@antifogeryService.GetAndStoreTokens(HttpContext).RequestToken");
+            $('#VehicleBindingModel_ModelId').prop('disabled', false);
+        });
+        $('.custom-file-input').on('change', function () {
+            $(this).next('.form-control-file').addClass("selected");
+            $('.custom-file-label').html($(this).val());
+        });
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}

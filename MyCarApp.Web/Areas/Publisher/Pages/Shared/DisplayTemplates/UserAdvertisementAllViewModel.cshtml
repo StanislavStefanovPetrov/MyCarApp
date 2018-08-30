@@ -1,0 +1,21 @@
+﻿@model UserAdvertisementAllViewModel
+
+
+<tr>
+    <td>@Model.Title</td>
+    <td>@Model.PublishDate.ToShortDateString()</td>
+    <td>
+        @Model.Vehicle
+    </td>
+    <td>@Model.Watchers</td>
+    <td>@Html.DisplayFor(model => model.IsExpired)</td>
+    <td>
+        <a asp-area=@AppUtilities.PublisherArea asp-page="/AdvertisementDetails" asp-route-advId="@Model.Id"
+           class="btn btn-info"><i class="fas fa-info"></i> Details</a>
+        @if (!Model.IsExpired)
+        {
+            <a asp-area=@AppUtilities.PublisherArea asp-page="/AdvertisementExpired" asp-route-advId="@Model.Id"
+               class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Set To Expired</a>
+        }
+    </td>
+</tr>

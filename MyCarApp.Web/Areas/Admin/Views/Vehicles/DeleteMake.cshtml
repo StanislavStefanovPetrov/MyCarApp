@@ -1,0 +1,25 @@
+﻿@model VehicleMakeDeletingBindingModel
+@{
+    ViewData["Title"] = "Delete Make";
+}
+
+<h2> @ViewData["Title"] - @Model.Name</h2>
+
+<hr />
+<form asp-area="Admin" asp-controller="Vehicles" asp-action="DeleteMake" method="post" class="form-horizontal">
+    <input type="hidden" asp-for="Id" />
+    @Html.EditorForModel()
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-push-2">
+            <input type="submit" value="Delete Make" class="btn btn-success" />
+            <a asp-area="Admin" asp-controller="Vehicles" asp-action="/" class="btn btn-default">Cancel</a>
+        </div>
+    </div>
+</form>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

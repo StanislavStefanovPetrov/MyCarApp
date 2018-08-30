@@ -1,0 +1,94 @@
+﻿@page "{id:int}"
+@model MyCarApp.Web.Pages.AdvertisementDetailsModel
+@{
+    ViewData["Title"] = "Advertisement Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+
+<style>
+    img {
+        border: 1px solid #ddd;
+        border-radius: 5%;
+        padding: 2%;
+        width: 30%;
+    }
+
+    .custom-img-small-details {
+        border: 1px solid #ddd;
+        border-radius: 5%;
+        padding: 2%;
+        width: 30%;
+    }
+
+    .custom-img-details {
+        border: 1px solid #ddd;
+        border-radius: 5%;
+        padding: 2%;
+        width: 100%;
+    }
+</style>
+@if (Model.advertisement.IsExpired)
+{
+    <h2 class="text-danger text-center">This advertisement is alredy expired!</h2>
+}
+    <div class="row">
+        <a asp-area="" asp-page="./Index" class="btn btn-success"><i class="fa fa-list" aria-hidden="true"></i> Back to Main Menu</a>
+        @if (!Model.advertisement.IsExpired)
+        {
+        <form method="post" asp-page-handler="AddToFavorite" asp-route-id="@Model.advertisement.Id">
+            <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Add Your Favorite Advertisements</button>
+        </form>
+        }        
+    </div>
+<hr />
+<div class="row justify-content-lg-center">
+    <div class="row">
+        <div class="col-6">
+            <div class="container">
+                <a href="~/Files/Pictures/@Model.advertisement.Vehicle.Images[0]">
+                    <span class="control-label col-md-6 h2">
+                        <img src="~/Files/Pictures/@Model.advertisement.Vehicle.Images[0]" class="custom-img-details" />
+                    </span>
+                </a>
+                <br />
+                @for (int i = 1; i < Model.advertisement.Vehicle.Images.Count(); i++)
+                {
+                    <a href="~/Files/Pictures/@Model.advertisement.Vehicle.Images[i]">
+                        <span class="control-label col-md-6 h2">
+                            <img src="~/Files/Pictures/@Model.advertisement.Vehicle.Images[i]" class="custom-img-small-details" />
+                        </span>
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <span class="h1 text-capitalize display-1">
+                    @Html.DisplayFor(m => m.advertisement.Title)
+                </span>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.advertisement.PublishDate, new { @class = "h4" })
+                <br />
+                <div class="col">
+                    @Html.DisplayFor(m => m.advertisement.PublishDate)
+                    <br />
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.advertisement.Seller, new { @class = "h4" })
+                <div class="col">
+                    @Html.DisplayFor(m => m.advertisement.Seller)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.advertisement.Vehicle, new { @class = "h4" })
+                <div class="col">
+                    @Html.DisplayFor(m => m.advertisement.Vehicle)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyCarApll.Common\MyCarApp.Common.csproj" />
+    <ProjectReference Include="..\MyCarApp.Data\MyCarApp.Data.csproj" />
+    <ProjectReference Include="..\MyCarApp.Models\MyCarApp.Models.csproj" />
+    <ProjectReference Include="..\MyCatApp.DataProcessor\MyCatApp.DataProcessor.csproj" />
+  </ItemGroup>
+
+</Project>

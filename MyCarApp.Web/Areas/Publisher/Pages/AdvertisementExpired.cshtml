@@ -1,0 +1,18 @@
+﻿@page
+@model AdvertisementExpiredModel
+@{
+    ViewData["Title"] = "Expire Your Advertisement";
+}
+
+<h2>@ViewData["Title"] - id: @Model.AdvId</h2>
+<hr />
+
+<form method="post" asp-route-advId="@Model.AdvId">
+    <div class="form-group">
+        <span class="text-danger h2">Please confirm you wish to set this advertisement like expired!</span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Set Your Advertisement To Expired</button>
+        <a asp-area=@AppUtilities.PublisherArea asp-page="All" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

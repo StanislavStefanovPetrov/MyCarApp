@@ -1,0 +1,32 @@
+﻿[
+  {
+    "Fuel": "Petrol"
+  },
+  {
+    "Fuel": "Diesel"
+  },
+  {
+    "Fuel": "Electric"
+  },
+  {
+    "Fuel": "Ethanol"
+  },
+  {
+    "Fuel": "Hybrid (petrol/electric)"
+  },
+  {
+    "Fuel": "Hybrid (diesel / electric)"
+  },
+  {
+    "Fuel": "LPG"
+  },
+  {
+    "Fuel": "Natural Gas"
+  },
+  {
+    "Fuel": "Hydrogen"
+  },
+  {
+    "Fuel": "Other"
+  }
+]

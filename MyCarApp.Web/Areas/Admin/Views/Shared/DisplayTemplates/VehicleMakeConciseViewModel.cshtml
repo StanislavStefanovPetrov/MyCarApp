@@ -1,0 +1,25 @@
+﻿@model VehicleMakeConciseViewModel
+
+<tr>
+    <td scope="col"><a asp-area="Admin" asp-controller="Vehicles" asp-action="MakeDetails" asp-route-id="@Model.Id" class="btn btn-default">@Model.Name</a></td>
+    <td>@Model.ModelsCountRegistered</td>
+    <td class="nav-item dropdown">
+        <a class="link dropdown-toggle" href="#" id="modelsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Models
+        </a>
+        @if (Model.Models.Any())
+        {
+            <div class="dropdown-menu" aria-labelledby="modelsDropdown">
+                @foreach (var vehicleModel in Model.Models)
+                {
+                    <a asp-area="Admin" asp-controller="Vehicles" asp-action="ModelDetails" asp-route-id="@vehicleModel.Id" class="dropdown-item list-group-item-secondary">@vehicleModel.Name</a>
+                }
+            </div>
+        }
+    </td>
+    <td>
+        <a asp-area="Admin" asp-controller="Vehicles" asp-action="AddNewModel" asp-route-id="@Model.Id" class="btn btn-primary">Add new model</a>
+
+        <a asp-area="Admin" asp-controller="Vehicles" asp-action="DeleteMake" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+    </td>
+</tr>

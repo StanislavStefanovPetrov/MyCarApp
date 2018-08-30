@@ -1,0 +1,32 @@
+﻿@model VehicleMakeConciseViewModel
+@{
+    ViewData["Title"] = "Make Details";
+}
+
+<h2> @ViewData["Title"] - @Model.Name</h2>
+
+<a asp-area="Admin" asp-controller="Vehicles" asp-action="Index" class="btn btn-success"><i class="fa fa-list" aria-hidden="true"></i> Back to Makes</a>
+<a asp-area="Admin" asp-controller="Vehicles" asp-action="AddNewModel" asp-route-id="@Model.Id" class="btn btn-success"><i class="fa fa-plus"></i> Create new model</a>
+<hr />
+
+<table class="table table-hover table-active">
+    <thead>
+        <tr>
+            <th scope="col">Model Name</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var vehicleModel in Model.Models.OrderBy(x=>x.Name))
+        {
+            <tr>
+                <td scope="col"><a asp-area="Admin" asp-controller="Vehicles" asp-action="ModelDetails" asp-route-id="@vehicleModel.Id" class="btn btn-default">@vehicleModel.Name</a></td>
+                <td>
+                    <a asp-area="Admin" asp-controller="Vehicles" asp-action="EditModel" asp-route-id="@vehicleModel.Id" class="btn btn-warning">Edit</a>
+                    <a asp-area="Admin" asp-controller="Vehicles" asp-action="DeleteModel" asp-route-id="@vehicleModel.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

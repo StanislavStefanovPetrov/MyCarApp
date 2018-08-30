@@ -1,0 +1,22 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+
+<cache expires-after="TimeSpan.FromSeconds(10)">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Info</th>
+            </tr>
+        </thead>
+        <tbody>
+            @Html.DisplayFor(m => m.allAdvertisements)
+        </tbody>
+    </table>
+</cache>

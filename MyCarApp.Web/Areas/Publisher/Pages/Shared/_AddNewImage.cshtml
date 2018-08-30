@@ -1,0 +1,36 @@
+﻿@model AdvertisementDetailsModel
+
+<style CSS>
+    #customFile .custom-file-control:lang(en)::after {
+        content: "Select file...";
+    }
+</style>
+<div class="row justify-content-lg-center">
+    <div class="col">
+        <form method="post" enctype="multipart/form-data" asp-area=@AppUtilities.PublisherArea asp-page="AdvertisementDetails" asp-page-handler="AddNewImage" asp-route-Id="@Model.advertisement.Id">
+            <h4 class="h4">Add New Image</h4>
+            <label class="custom-file" id="customFile">
+                <input asp-for="PictureFile" class="form-control custom-file-input" />
+                <label asp-for="PictureFile" class="custom-file-label" for="customFile"></label>
+                <span asp-validation-for="PictureFile" class="text-danger custom-file-control form-control-file"></span>
+            </label>
+            <hr />
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-push-2">
+                    <input type="submit" value="Add Image" class="btn btn-success" />
+                    <a asp-area=@AppUtilities.PublisherArea asp-page="AdvertisementDetails" asp-route-advId="@Model.advertisement.Id" class="btn btn-default">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $('.custom-file-input').on('change', function () {
+            $(this).next('.form-control-file').addClass("selected");
+            $('.custom-file-label').html($(this).val());
+        })
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,4 @@
+﻿@model VehicleModelDetailsViewModel
+
+<p><strong>@Html.LabelFor(model => model.Name):</strong> @Html.DisplayFor(model => model.Name)</p>
+<p><strong>@Html.LabelFor(model => model.MakeName):</strong> <a asp-area="Admin" asp-controller="Vehicles" asp-action="MakeDetails" asp-route-id="@Model.MakeId">@Html.DisplayFor(model => model.MakeName)</a></p>

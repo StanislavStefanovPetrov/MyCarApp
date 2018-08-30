@@ -1,0 +1,7 @@
+@using Microsoft.AspNetCore.Identity
+
+@if (this.User.IsInRole(AppUtilities.AdministratorRole))
+{
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" asp-area="Admin" asp-controller="Home" asp-action="Index">Go To Adminitrator Menu</a>
+}

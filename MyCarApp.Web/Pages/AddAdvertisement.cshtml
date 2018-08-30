@@ -1,0 +1,298 @@
+﻿@page
+@model MyCarApp.Web.Pages.AddAdvertisementModel
+@using MyCarApp.Web.Helpers
+@using MyCarApp.Common.Publisher.ViewModels
+@{
+    ViewData["Title"] = "Advertisement";
+}
+<style CSS>
+    #customFile .custom-file-control:lang(en)::after {
+        content: "Select file...";
+    }
+</style>
+
+<h2>@ViewData["Title"]</h2>
+<a asp-page="Index" class="btn btn-success"><i class="fa fa-list" aria-hidden="true"></i> Back to Main</a>
+
+@{
+    var attributes = new Dictionary<string, object>();
+
+    attributes.Add("LabelFor", new { @class = "control-label h6" });
+
+    attributes.Add("ValidationMessageFor", new { @class = "text-danger" });
+
+}
+
+<div class="row justify-content-lg-center">
+    <div class="col">
+        <form method="post" enctype="multipart/form-data">
+            <h4>Create a new advertisement.</h4>
+            <hr />
+
+            <div class="form-group">
+                <div class="row">
+                    <h4 class="h4">Title</h4>
+                </div>
+                <hr>
+                <label asp-for="AdvertisementBindingModel.Title"></label>
+                <input asp-for="AdvertisementBindingModel.Title" class="form-control" />
+                <span asp-validation-for="AdvertisementBindingModel.Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <h4 class="h4">Make, Model, Condition</h4>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-4">
+                        @{
+                            attributes["DropDownList"] = new { @class = "form-control", @id = "VehicleBindingModel_MakeId" };
+                        }
+                        @Html.FormDropDownListGroupWithCustomAttibutesFor(m => m.VehicleBindingModel.MakeId, new SelectList(Model.Input.VehicleMakes, "Id", "Name"), "--Select an item---", false, attributes)
+                    </div>
+                    <div class="col-4">
+                        @{
+                            attributes["DropDownList"] = new { @class = "form-control", @id = "VehicleBindingModel_ModelId", @disabled = "disabled" };
+                        }
+                        @Html.FormDropDownListGroupWithCustomAttibutesFor(m => m.VehicleBindingModel.ModelId, new SelectList(new List<VehicleModelViewModel>()), "--Select an item---", true, attributes)
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <h4 class="h6">Condition</h4>
+                        </div>
+                        <div class="form-group">
+                            @foreach (var condition in Model.Input.VehicleConditions)
+                            {
+                                <input asp-for="VehicleBindingModel.ConditionIds" value="@condition.Id" type="radio" class="btn btn-outline-primary" />
+                                <label asp-for="@condition.Id">@condition.Condition</label>
+                                <input asp-for="@condition.Id" type="hidden" />
+                            }
+                            <div>
+                                <span asp-validation-for="VehicleBindingModel.ConditionIds" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <h4 class="h4">Color</h4>
+                </div>
+                <hr>
+                <div class="form-group">
+                    @foreach (var color in Model.Input.Colors)
+                    {
+                        <input asp-for="VehicleBindingModel.ColorId" value="@color.Id" type="radio" class="btn btn-outline-primary" />
+                        <label asp-for="@color.Id">@color.Name</label>
+                        <input asp-for="@color.Id" type="hidden" />
+                    }
+                    <div>
+                        <span asp-validation-for="VehicleBindingModel.ColorId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <h4 class="h4">Vehicle Type</h4>
+                </div>
+                <hr>
+                <div class="form-group">
+                    @foreach (var type in Model.Input.VehicleTypes)
+                    {
+                        <input asp-for="VehicleBindingModel.TypeId" value="@type.Id" type="radio" class="btn btn-outline-primary" />
+                        <label asp-for="@type.Id">@type.Type</label>
+                        <input asp-for="@type.Id" type="hidden" />
+                    }
+                    <div>
+                        <span asp-validation-for="VehicleBindingModel.TypeId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <h4 class="h4">Engine</h4>
+                </div>
+                <hr />
+                <div class="form-group">
+
+                    <div class="row">
+                        <h4 class="h6">Fuel Type</h4>
+                    </div>
+                    <div class="form-group">
+                        @foreach (var fuelType in Model.Input.FuelTypes)
+                        {
+                            <input asp-for="VehicleBindingModel.FuelTypeId" value="@fuelType.Id" type="radio" class="btn btn-outline-primary" />
+                            <label asp-for="@fuelType.Id">@fuelType.Fuel</label>
+                            <input asp-for="@fuelType.Id" type="hidden" />
+                        }
+                        <div>
+                            <span asp-validation-for="VehicleBindingModel.FuelTypeId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <h4 class="h6">Transmission</h4>
+                            <div class="form-group">
+                                @foreach (var transmission in Model.Input.Transmissions)
+                                {
+                                    <input asp-for="VehicleBindingModel.TransmissionId" value="@transmission.Id" type="radio" class="btn btn-outline-primary" />
+                                    <label asp-for="@transmission.Id">@transmission.Type</label>
+                                    <input asp-for="@transmission.Id" type="hidden" />
+                                }
+                                <div>
+                                    <span asp-validation-for="VehicleBindingModel.TransmissionId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label asp-for="VehicleBindingModel.EngineCapacity" class="h6"></label>
+                            <input asp-for="VehicleBindingModel.EngineCapacity" class="form-control" min="100" max="10000" />
+                            <span asp-validation-for="VehicleBindingModel.EngineCapacity" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <h4 class="h4">Vehicle Details</h4>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.VehicleBindingModel.FirstRegistration, new { @class = "h4" })
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <div class="col">
+                                        @Html.EditorFor(model => model.VehicleBindingModel.FirstRegistration)
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-calendar">
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <span class="table-danger">
+                                        @Html.ValidationMessageFor(model => model.VehicleBindingModel.FirstRegistration)
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.VehicleBindingModel.Kilometre, new { @class = "h4" })
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <div class="col">
+                                        @Html.EditorFor(model => model.VehicleBindingModel.Kilometre)
+                                    </div>
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(model => model.VehicleBindingModel.Kilometre)
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.VehicleBindingModel.Price, new { @class = "h4" })
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <div class="col">
+                                        @Html.EditorFor(model => model.VehicleBindingModel.Price)
+                                    </div>
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(model => model.VehicleBindingModel.Price)
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(model => model.VehicleBindingModel.Power, new { @class = "h4" })
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <div class="col">
+                                        @Html.EditorFor(model => model.VehicleBindingModel.Power)
+                                    </div>
+                                    <span class="text-danger">
+                                        @Html.ValidationMessageFor(model => model.VehicleBindingModel.Power)
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <label class="custom-file" id="customFile">
+                <input type="file" class="custom-file-input" id="VehicleBindingModel_PictureFile" name="VehicleBindingModel.PictureFile" aria-describedby="fileHelp">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+                <span class="custom-file-control form-control-file"></span>
+            </label>
+            <hr />
+
+            <button type="submit" class="btn btn-default">Add Advertisement</button>
+        </form>
+
+    </div>
+</div>
+
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery antifogeryService
+
+@section Scripts {
+    <script src="~/js/inport-data-to-drop-down-list.js"></script>
+    <script>
+        $('#VehicleBindingModel_MakeId').change(function () {
+            inportDataToDropDownList("VehicleBindingModel_MakeId", "VehicleBindingModel_ModelId","https://localhost:44300/Models", "@antifogeryService.GetAndStoreTokens(HttpContext).RequestToken");
+            //Could user also OnGetMakeModelsAsync handler here. It does the same.
+            $('#VehicleBindingModel_ModelId').prop('disabled', false);
+        });
+        $('.custom-file-input').on('change', function () {
+            $(this).next('.form-control-file').addClass("selected");
+            $('.custom-file-label').html($(this).val());
+        });
+        //Client side validation does not work properly! TODO - fix it
+        //$(function () {
+
+        //    /*First Registration Date*/
+        //    jQuery.validator.addMethod('currentdate', function (value, element, params) {
+        //        var minDate = new Date(params["min"]);
+        //        var maxDate = new Date(params["max"]);
+        //        var dateValue = new Date(value);
+        //        if (dateValue > minDate && dateValue < maxDate)
+        //            return true;
+        //        else
+        //            return false;
+        //    });
+
+        //    jQuery.validator.unobtrusive.adapters.add('currentdate', ['min', 'max'], function (options) {
+        //        var params = {
+        //            min: options.params.min,
+        //            max: options.params.max
+        //        };
+
+        //        options.rules['currentdate'] = params;
+        //        if (options.message) {
+        //            options.messages['currentdate'] = options.message;
+        //        }
+        //    });
+        //    /*End*/
+        //}(jQuery));
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+

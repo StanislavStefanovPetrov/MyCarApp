@@ -1,0 +1,20 @@
+﻿@model VehicleModelEdittingBindingModel
+
+@{
+    var attributes = new Dictionary<string, object>();
+
+    attributes.Add("LabelFor", new { @class = "control-label col-sm-2" });
+
+    attributes.Add("EditorFor", new { @class = "form-control",  @readonly="read-only"});
+
+    attributes.Add("ValidationMessageFor", new { @class = "text-danger" });
+
+}
+@Html.FormEditGroupWithCustomAttibutesFor(m => m.MakeName, attributes)
+
+@{
+    attributes["EditorFor"]=new { @class = "form-control"};
+
+}
+@Html.FormEditGroupWithCustomAttibutesFor(m => m.Name, attributes)
+

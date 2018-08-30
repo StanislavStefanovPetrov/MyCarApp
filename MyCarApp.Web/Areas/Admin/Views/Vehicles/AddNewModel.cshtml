@@ -1,0 +1,23 @@
+﻿@model VehicleModelCreatingBindingModel
+@{
+    ViewData["Title"] = "Add New Model";
+}
+
+<h2> @ViewData["Title"] to Make: @Model.MakeName</h2>
+
+<form asp-area="Admin" asp-controller="Vehicles" asp-action="AddNewModel" method="post" class="form-horizontal">
+    <input type="hidden" asp-for="MakeId" />
+    @Html.EditorForModel()
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-push-2">
+            <input type="submit" value="Add Model" class="btn btn-success" />
+            <a asp-area=@AppUtilities.AdministratorArea asp-controller="Vehicles" asp-action="MakeDetails" asp-route-id="@Model.MakeId" class="btn btn-default">Cancel</a>
+        </div>
+    </div>
+</form>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

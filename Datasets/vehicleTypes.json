@@ -1,0 +1,26 @@
+﻿[
+  {
+    "Type": "Cabriolet / Roadster"
+  },
+  {
+    "Type": "Estate Car"
+  },
+  {
+    "Type": "Off-road Vehicle / Pickup Truck"
+  },
+  {
+    "Type": "Saloon"
+  },
+  {
+    "Type": "Small Car"
+  },
+  {
+    "Type": "Sports Car / Coupe"
+  },
+  {
+    "Type": "Van / Minibus"
+  },
+  {
+    "Type": "Other"
+  }
+]
